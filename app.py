@@ -17,7 +17,8 @@ def get_tasks():
 
 @app.route('/add_task')
 def add_task():
-    return render_template("addTask.html")
+    categories = mongo.db.categories.find()
+    return render_template("addTask.html", categories = categories)
 
 if __name__ == '__main__':
     app.run(host = os.getenv('IP', '0.0.0.0'), port = int(os.getenv('PORT', '5000')), debug=True)
